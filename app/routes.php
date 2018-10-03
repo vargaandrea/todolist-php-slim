@@ -24,11 +24,9 @@ $app->post('/todo/add', '\App\Controller\TodoController:add');
 
 // API group
 $app->group('/api', function () use ($app) {
-    $app->get('/todos', \App\Controller\TodoJSONController::class);
+    $app->get('/todos', '\App\Controller\TodoController:todosAPI');
+    $app->post('/todo/add', '\App\Controller\TodoController:addAPI');
 });
-
-
-
 
 $app->get('/', function(Request $request, Response $response, array $args) {
     return $response->withRedirect('/home');

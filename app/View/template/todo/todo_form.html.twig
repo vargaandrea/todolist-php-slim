@@ -1,0 +1,15 @@
+<form id="add-todo-form" action="/api/todo/add" method="post" novalidate>
+	
+    <div class="input-group">
+    	<div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend">+</span>
+        </div>
+        <input name="todo_text" type="text" class="form-control" placeholder="Todo" required>
+        <button type="submit" class="btn btn-default add-todo" value="submit">Add</button>
+        <div class="invalid-feedback">
+        	Please enter a todo
+        </div>
+        
+    </div>  
+   
+</form>

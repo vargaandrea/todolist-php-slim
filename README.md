@@ -29,6 +29,12 @@ That's it! Now go build something cool.
 
 
 # More
+JS:	
+
+	composer require twbs/bootstrap
+	composer require heimrichhannot/popper.js
+
+
 
 Add Twig:
 
@@ -48,10 +54,23 @@ Reset db:
 
 	vendor/bin/phinx migrate -e development -t 0
 	
+	
+
+
+# Resources / docs / tutorials
+
+Ajax form submit
+
+	https://symfonycasts.com/screencast/javascript/ajax-form-submit
 
 
 
-Resources / docs / tutorials :
-Ajax form submit: https://symfonycasts.com/screencast/javascript/ajax-form-submit
+JQuery form validation
 
-1
+	https://www.sitepoint.com/basic-jquery-form-validation-tutorial/
+	-> using: https://jqueryvalidation.org/
+	-> https://jqueryvalidation.org/files/demo/bootstrap/index.html
+
+Bootstrap / CSS
+
+	https://hackerthemes.com/bootstrap-cheatsheet/

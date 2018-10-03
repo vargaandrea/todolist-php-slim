@@ -5,3 +5,7 @@
 .floatright {
     float:right;
 }
+
+#todolist li:hover {
+    background-color: #E9ECEF;
+}

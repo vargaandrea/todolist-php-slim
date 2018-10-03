@@ -1,12 +1,12 @@
-{% extends "base.html.twig" %}
+{% extends "./base.html.twig" %}
 {% block content %}
 
- 	{{ include('form/todo.html.twig') }}
-	
+ 	{{ include('todo/todo_form.html.twig') }}
+	<br/>
 	{% if todolist %}
-		<ul>
+		<ul id="todolist" class="list-group">
 		{% for todo in todolist %}
-	        <li>{{ todo.text }}</li>
+	        {{ include('todo/todo_row.html.twig') }}
 	    {% endfor %}
 		 </ul>    
 	{% else %}
