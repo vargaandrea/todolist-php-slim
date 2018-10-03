@@ -74,3 +74,7 @@ JQuery form validation
 Bootstrap / CSS
 
 	https://hackerthemes.com/bootstrap-cheatsheet/
+	
+Icons
+
+	https://fontawesome.com/
