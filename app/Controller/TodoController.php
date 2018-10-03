@@ -55,7 +55,7 @@ class TodoController extends \App\Controller\Controller
     public function __invoke(Request $request, Response $response, array $args) 
     { 
         $args['todolist'] = $this->getTodos();
-        return $this->container->view->render($response, 'todolist.html', $args); 
+        return $this->container->view->render($response, 'todolist.html.twig', $args); 
     }
     
     

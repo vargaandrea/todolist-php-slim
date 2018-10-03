@@ -1,7 +1,7 @@
-{% extends "base.html" %}
+{% extends "base.html.twig" %}
 {% block content %}
 
- 	{{ include('form/todo.html') }}
+ 	{{ include('form/todo.html.twig') }}
 	
 	{% if todolist %}
 		<ul>
@@ -13,5 +13,17 @@
 		No Todos    
 	{% endif %}    
    
+   	
+   
 {% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script src="js/todo.js"></script>
+{% endblock %}
+
+
+
+
+
 

@@ -50,4 +50,8 @@ Reset db:
 	
 
 
+
+Resources / docs / tutorials :
+Ajax form submit: https://symfonycasts.com/screencast/javascript/ajax-form-submit
+
 1

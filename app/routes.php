@@ -15,7 +15,7 @@ $app->get('/ping', function() {
 });
 
 $app->get('/home', function(Request $request, Response $response, array $args) {
-    return $this->view->render($response, 'home.html', $args);
+    return $this->view->render($response, 'home.html.twig', $args);
 });
 
 $app->get('/todolist', \App\Controller\TodoController::class);
