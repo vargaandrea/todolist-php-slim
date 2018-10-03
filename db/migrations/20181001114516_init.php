@@ -32,6 +32,12 @@ class Init extends AbstractMigration
      */
     public function change()
     {
+        $this->creaateUser();
+        $this->createTodo();
+    }
+    
+    private function creaateUser() 
+    {
         
         $table = $this->table('user', [
             'id' => false,
@@ -44,10 +50,33 @@ class Init extends AbstractMigration
                 ->addColumn('first', 'string')
                 ->addColumn('last', 'string')
                 ->addColumn('email', 'string')
-                ->addColumn('password', 'string')
-                ->addColumn('created', 'datetime')
+                ->addColumn('password_hash', 'string')
+                ->addColumn('created', 'datetime', ['default' => 'CURRENT_TIMESTAMP'])
                 ->create();
             
+        // inserting multiple rows
+        $rows = [
+            [
+                'id'    => 1,
+                'first'  => 'Andrea',
+                'last'  => 'Varga',
+                'email' => 'andi@narancs.net',
+                'password_hash' => password_hash('1234', PASSWORD_DEFAULT, ['cost' => 12])
+            ],
+            [
+                'id'    => 2,
+                'first'  => 'Johnny',
+                'last'  => 'Test',
+                'email' => 'jhonny@test.net',
+                'password_hash' => password_hash('test', PASSWORD_DEFAULT, ['cost' => 12])
+            ]
+        ];
+        
+        $table->insert($rows)->save();
+    }
+    
+    private function createTodo()
+    {
         
         $table = $this->table('todo', [
             'id' => false,

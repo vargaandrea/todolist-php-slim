@@ -1,6 +1,8 @@
 <?php
 namespace App;
 
+use \PDO;
+
 if (PHP_SAPI == 'cli-server') {
     // To help the built-in PHP dev server, check if the request was actually for
     // something which should probably be served as a static file
@@ -16,12 +18,13 @@ require __DIR__ . '/../vendor/autoload.php';
 session_start();
 
 // Instantiate the app
-$settings = require __DIR__ . '/settings.php';
+$settings = require __DIR__ . '/../app/settings.php';
 $app = new \Slim\App($settings);
 
 $container = $app->getContainer();
 $container['view'] = function ($container) {
-    $view = new \Slim\Views\Twig(__DIR__ . '/views/templates', [
+
+    $view = new \Slim\Views\Twig(__DIR__ . '/../app/View/template', [
         'cache' => false
         // 'cache' => $container->settings['views']['cache']
     ]);
@@ -30,14 +33,22 @@ $container['view'] = function ($container) {
     return $view;
 };
 
+$container['db'] = function($container) {
+    $settings = $container['settings'];
+    $db_config = $settings['database'][$settings['environment']];
+    $dbh = new PDO("mysql:host=".$db_config['host'].";dbname=".$db_config['name'], $db_config['user'], $db_config['pass']);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    return $dbh;
+};
+
 // Set up dependencies
-require __DIR__ . '/dependencies.php';
+require __DIR__ . '/../app/dependencies.php';
 
 // Register middleware
-require __DIR__ . '/middleware.php';
+require __DIR__ . '/../app/middleware.php';
 
 // Register routes
-require __DIR__ . '/routes.php';
+require __DIR__ . '/../app/routes.php';
 
 // Run app
 $app->run();

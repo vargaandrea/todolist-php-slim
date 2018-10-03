@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+ 	{{ include('form/todo.html') }}
+	
+	{% if todolist %}
+		<ul>
+		{% for todo in todolist %}
+	        <li>{{ todo.text }}</li>
+	    {% endfor %}
+		 </ul>    
+	{% else %}
+		No Todos    
+	{% endif %}    
+   
+{% endblock %}
+
