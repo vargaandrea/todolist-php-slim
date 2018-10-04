@@ -11,11 +11,12 @@ use \Exception;
 // Routes
 
 $app->get('/ping', function() {
-    echo "ping";
+    return "ping";
 });
 
 $app->get('/home', function(Request $request, Response $response, array $args) {
     return $this->view->render($response, 'home.html.twig', $args);
+
 });
 
 $app->get('/todolist', \App\Controller\TodoController::class);

@@ -39,7 +39,7 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
                 'REQUEST_URI' => $requestUri
             ]
         );
-
+            
         // Set up a request object based on the environment
         $request = Request::createFromEnvironment($environment);
 
@@ -56,7 +56,29 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
 
         // Instantiate the application
         $app = new App($settings);
-
+        
+        
+        $container = $app->getContainer();
+        $container['view'] = function ($container) {
+            
+            $view = new \Slim\Views\Twig(__DIR__ . '/../../app/View/template', [
+                'cache' => false
+                // 'cache' => $container->settings['views']['cache']
+            ]);
+            $basePath = rtrim(str_ireplace('index.php', '', $container['request']->getUri()->getBasePath()), '/');
+            $view->addExtension(new \Slim\Views\TwigExtension($container['router'], $basePath));
+            return $view;
+        };
+        /*
+        $container['db'] = function($container) {
+            $settings = $container['settings'];
+            $db_config = $settings['database'][$settings['environment']];
+            $dbh = new PDO("mysql:host=".$db_config['host'].";dbname=".$db_config['name'], $db_config['user'], $db_config['pass']);
+            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $dbh;
+        };*/
+        
+        
         // Set up dependencies
         require __DIR__ . '/../../app/dependencies.php';
 

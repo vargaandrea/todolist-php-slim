@@ -24,7 +24,7 @@ Run this command in the application directory to run the test suite
 
 	php composer.phar test
 
-That's it! Now go build something cool.
+That's it! Now go build something cool.php
 
 
 
@@ -50,11 +50,13 @@ Add Phinx:
 	
 	vendor/bin/phinx migate -e environment
 	
-Reset db:
+ - Reset db:
 
 	vendor/bin/phinx migrate -e development -t 0
 	
-	
+PHPUnit
+
+	composer require --dev phpunit/phpunit	
 
 
 # Resources / docs / tutorials
