@@ -3,6 +3,10 @@
 namespace App\Model;
 
 
+/**
+ * @author andi
+ *
+ */
 class Todo extends Model
 {
 	
@@ -11,12 +15,16 @@ class Todo extends Model
 	protected $email;
 	protected $password;
     
+	
 	public function __construnct()
 	{
 	    $this->table = "user";
 	}
 	
 
+	/**
+	 * @param unknown $id
+	 */
 	public function getById($id)
 	{
 		$this->db->prepare("select..." );

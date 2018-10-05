@@ -6,6 +6,7 @@ use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Http\Environment;
+use \PDO;
 
 /**
  * This is an example class that shows how you could set up a method that
@@ -69,14 +70,14 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
             $view->addExtension(new \Slim\Views\TwigExtension($container['router'], $basePath));
             return $view;
         };
-        /*
+        
         $container['db'] = function($container) {
             $settings = $container['settings'];
-            $db_config = $settings['database'][$settings['environment']];
+            $db_config = $settings['database']['test'];
             $dbh = new PDO("mysql:host=".$db_config['host'].";dbname=".$db_config['name'], $db_config['user'], $db_config['pass']);
             $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $dbh;
-        };*/
+        };
         
         
         // Set up dependencies

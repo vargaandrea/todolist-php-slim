@@ -7,6 +7,10 @@ use Slim\Http\Response;
 use \PDO;
 use \Exception;
 
+/**
+ * @author andi
+ *
+ */
 class TodoController extends \App\Controller\Controller
 {
     protected function getTodos()
@@ -30,8 +34,12 @@ class TodoController extends \App\Controller\Controller
         return $todos;
     }
     
-    protected function addTodo($todoText)
-    {
+   
+
+    /**
+     * @param string $todoText
+     */
+    protected function addTodo(string $todoText) {
         $db = $this->container->db;
         $todos = [];
         
@@ -57,6 +65,7 @@ class TodoController extends \App\Controller\Controller
         $args['todolist'] = $this->getTodos();
         return $this->container->view->render($response, 'todo/todolist.html.twig', $args); 
     }
+
     
     public function todosAPI(Request $request, Response $response, array $args)
     {
